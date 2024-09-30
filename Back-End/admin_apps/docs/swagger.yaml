@@ -1,0 +1,124 @@
+definitions:
+  models.User:
+    properties:
+      created_date:
+        type: string
+      is_blacklisted:
+        type: string
+      modified_datetime:
+        type: string
+      password:
+        type: string
+      user_id:
+        type: string
+      user_type:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      consumes:
+      - '*/*'
+      description: Get All User.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              type: string
+            type: array
+      summary: Get All User.
+      tags:
+      - User
+    post:
+      consumes:
+      - '*/*'
+      description: Insert Admin User
+      parameters:
+      - description: New Admin User Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+      summary: Insert Admin User
+      tags:
+      - User
+  /{id}:
+    delete:
+      consumes:
+      - '*/*'
+      description: Delete User Account
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+      summary: Delete User Account
+      tags:
+      - User
+    get:
+      consumes:
+      - '*/*'
+      description: Get User By ID.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              type: string
+            type: array
+      summary: Get User By ID.
+      tags:
+      - User
+  /blacklist/{id}:
+    put:
+      consumes:
+      - '*/*'
+      description: On/Off User Blacklist Status
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+      summary: Toggle User Blacklist
+      tags:
+      - User
+swagger: "2.0"

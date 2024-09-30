@@ -1,0 +1,21 @@
+<div>
+  <a routerLink="/">HOME</a>
+  <p>user_id: {{user.user_id}}</p>
+  <p>username: {{user.username}}</p>
+  <p>password: {{user.password}}</p>
+  <p>hashed_password: {{user.hashed_password}}</p>
+  <p>created_date: {{user.created_date}}</p>
+  <p>modified_datetime: {{user.modified_datetime}}</p>
+  <p>is_blacklisted: {{user.is_blacklisted}}</p>
+  <p>user_type: {{user.user_type}}</p>
+  <div>
+    <div *ngIf="user.is_blacklisted == '0';then normal else blacklisted"></div>
+    <ng-template #normal>
+      <a routerLink="/form/{{userId}}">Blacklist</a>
+    </ng-template>
+    <ng-template #blacklisted>
+      <a routerLink="/form/{{userId}}">Unblacklist</a>
+    </ng-template>
+  </div>
+  <button (click)="deleteUserByID()">Delete</button>
+</div>

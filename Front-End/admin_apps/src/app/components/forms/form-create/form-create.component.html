@@ -1,0 +1,9 @@
+<div>
+  <a routerLink="/">HOME</a>
+  <form #formData="ngForm" (ngSubmit)="insertUser(formData.value)">
+    username: <input type="text" ngModel name="username"><br>
+    password: <input type="password" ngModel name="password"><br>
+    user_type: <input type="text" ngModel name="user_type"><br>
+    <button type="submit">Submit</button>
+  </form>
+</div>

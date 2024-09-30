@@ -1,0 +1,6 @@
+<div>
+  <a routerLink="/form">CREATE NEW USER</a>
+  <div *ngFor="let user of users">
+    <a routerLink="/user/{{user.user_id}}">Username: {{user.username}} (ID: {{user.user_id}})</a>
+  </div>
+</div>

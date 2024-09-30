@@ -1,0 +1,34 @@
+Micro Apps List:
+1. Seller Apps (.NET & ReactJS)
+>> [GET ALL] See All Products
+>> [GET BY ID] See Product Detail
+>> [POST] Add New Product
+>> [PUT] Update Product Info
+>> [DELETE] Hard Delete Product
+
+2. Buyer Apps (Spring Boot & VueJS)
+>> [GET ALL] See All Products
+>> [GET BY ID] See Product Detail
+>> [GET ALL] See All Products in Cart
+>> [POST] Add Product to Cart
+>> [PUT] Update Product in Cart
+>> [DELETE] Hard Delete Product from Cart
+
+3. Admin Apps (Gin Go & Angular)
+>> [GET ALL] See All Users
+>> [GET BY ID] See User Detail
+>> [POST] Add Admin Account
+>> [PUT] Update Blacklist Status (Add/Remove)
+>> [DELETE] Hard Delete User Account
+
+4. Home Apps (Laravel)
+>> [GET ALL] See All Account
+>> [GET BY ID] Login
+>> [POST] Register Account
+>> [PUT] Update Profile
+>> [DELETE] Hard Delete Account
+
+Authentication System:
+1. Rumus hashing bikin sendiri dan beda-beda di setiap microservice beserta dengan konstanta yang random.
+2. Ketika berhasil login, maka jika Admin, maka akan diarahkan ke Admin Apps dan beroleh signature dari hasil hashing yang ada di Admin Apps. Dapatkan signaturenya dengan melakukan hit ke API login dari setiap microservice. Yang di passing ialah id beserta password dalam kondisi hashed (agar ga mudah di bruteforce oleh programmer). Salah atau benar hashed passwordnya ttp dpt signaturenya. Bedanya kalo salah, nanti saatu mau insert, update, delete, bakal kedetect kalo username/id tersebut seharusnya tidak memiliki signature tersebut (ketauan dari hashed password di database), jadi akan diarahkan untuk login ulang.
+3. Selama ada signature, maka ketika ke Home Apps, maka akan diredirect. Kalo ga ada signature, maka mau ke Apps Seller, Buyer, atau Admin, ttp akan di redirect ke Home Apps. Kalo signature salah, maka signature dihapus, dan di redirect ke Home Apps untuk login.
